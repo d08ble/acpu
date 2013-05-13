@@ -1,0 +1,42 @@
+stack.register u0;
+stack.address 100;
+
+stack
+{
+  push
+  {
+    set(address+register, _0);
+    register:=register+1;
+    register+=1;
+  };  
+  pop
+  {
+    _0:=get(address+register);
+    register-=1;
+  };
+};
+
+_ stack;
+
+push(r0);
+pop(r0);
+
+heap
+{
+  alloc
+  {
+    mem(_0);
+  };
+  free
+  {
+    del(_0);
+  };
+};
+
+_ heap;
+
+r0:=alloc(100);
+free(r0);
+
+
+

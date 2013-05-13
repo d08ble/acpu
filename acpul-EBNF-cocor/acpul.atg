@@ -1,0 +1,365 @@
+#include "tree.hh"
+#include "Scanner.h"
+
+typedef enum stype {
+  stype_main,
+  stype_statement,
+  stype_name,
+  stype_ident,
+  stype_number,
+  stype_object,
+  stype_object_declaration,
+  stype_expression,
+  stype_expression_simple,
+  stype_expression_assign,
+  stype_term,
+  stype_operator,
+  stype_function,
+  stype_block,
+  stype_file
+};
+
+class snode {
+public:
+    int uid;
+    acpul::Token *_la;
+    stype type;
+    snode(acpul::Token *la_, stype type_, int uid_ = 0)
+    {
+        _la = la_;
+        type = type_;
+        uid = uid_;
+    }
+
+    const wchar_t *val()
+    {
+        return _la ? _la->val : L"";
+    }
+};
+
+class stree : public tree<snode *>
+{
+    stree::iterator _main;
+    int _uid;
+public:
+    stree() : tree<snode *>()
+    {
+      _uid = 0;
+      stree::iterator top;
+      top = begin();
+      _main = insert(top, new snode(NULL, stype_main, _uid));
+      _uid++;
+    }
+
+    stree(bool a) : tree<snode *>()
+    {
+      _uid = 0;
+    }
+
+    stree::iterator main() {return _main;}
+
+    stree::iterator add(stree::iterator node, acpul::Token *la, stype type)
+    {
+        stree::iterator n1 = append_child(node, new snode(la, type, _uid));
+        _uid++;
+        //printf("add %p<-%p\n", *node, *n1);
+        return n1;
+    }
+};
+
+COMPILER ACPU
+
+  stree _tree;
+
+typedef stree::iterator STI;
+
+void dumpTree(stree &tree)
+{
+    stree::iterator sib2=tree.begin();
+    stree::iterator end2=tree.end();
+
+    Buffer *buffer = scanner->buffer;
+
+    static char *s[] = {
+        "main",
+        "statement",
+        "name",
+        "ident",
+        "number",
+        "object",
+        "object_declaration",
+        "expression",
+        "expression_simple",
+        "expression_assign",
+        "term",
+        "operator",
+        "function",
+        "block",
+        "file"
+    };
+
+    while (sib2!=end2)
+    {
+        for(int i=0; i<_tree.depth(sib2); ++i) //>
+            printf(" ");
+//        printf("%s '%S'\n", s[(*sib2)->type], buffer->GetString((*sib2)->start, (*sib2)->end));
+        printf("%s %S\n", s[(*sib2)->type], (*sib2)->val());
+        ++sib2;
+    }
+}
+
+void dumpTree()
+{
+    dumpTree(_tree);
+}
+
+Token *NextAfterComplexIdent()
+{
+    scanner->ResetPeek();
+    Token *x = scanner->Peek();
+    int a = 0;
+//    printf(">>");
+    while (1)
+    {
+//        printf("%S", x->val);
+        if (a)
+        {
+            if (x->kind != _ident)
+                break;
+        }
+        else
+            if (wcscmp(x->val, L"."))
+                break;
+        a ^= 1;
+        x = scanner->Peek();
+    }
+//    printf("\n");
+    return x;
+}
+
+bool IsObject()
+{
+    Token *next = NextAfterComplexIdent();
+    bool a = next->kind == _ident 
+        || next->kind ==_number 
+        || !wcscmp(next->val, L"{") 
+        || !wcscmp(next->val, L"@");
+//    printf("IsObject %S %S --- %i %i %s\n", la->val, next->val, la->kind, next->kind, a ? "+" : "-");
+    scanner->ResetPeek();
+    return a;
+}
+
+bool IsAssignExpression()
+{
+    Token *next = NextAfterComplexIdent();
+    bool a = !wcscmp(next->val, L":=")
+             || !wcscmp(next->val, L"+=")
+             || !wcscmp(next->val, L"-=")
+             || !wcscmp(next->val, L"*=")
+             || !wcscmp(next->val, L"/=")
+             || !wcscmp(next->val, L"%=");
+//    printf("IsAssignExpression %S %S --- %i %i %s\n", la->val, next->val, la->kind, next->kind, a ? "+" : "-");
+    scanner->ResetPeek();
+    return a;
+}
+
+bool IsFunction()
+{
+    Token *next = NextAfterComplexIdent();
+    bool a = !wcscmp(next->val, L"(");
+//    printf("IsFunction %S %S --- %i %i %s\n", la->val, next->val, la->kind, next->kind, a ? "+" : "-");
+    scanner->ResetPeek();
+    return a;
+}
+
+CHARACTERS
+  letter    = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_".
+  digit     = "0123456789".
+  eol       = "\n".
+//  eos       = ";".    //End of Statement
+
+TOKENS
+  ident     = letter { letter | digit }.
+  number    = digit {digit} [ '.' {digit} ].
+//  eos       = ';'.
+//  if        = "if".
+
+PRAGMAS
+  testpragma='~' {letter}.  (. printf("%p", la->val); .)
+
+COMMENTS FROM "#" TO eol
+COMMENTS FROM "/*" TO "*/" NESTED
+
+IGNORE '\n'
+
+PRODUCTIONS
+ACPU                                  (. STI node = _tree.main(); .)
+=                           
+  Statements<node>
+.
+
+Statements<STI parent>
+=
+  {
+    Statement<parent>
+  }
+.
+
+Statement<STI parent>      
+=
+  (
+    IF(IsObject()) Object<parent>
+  | Expression<parent>
+  )
+  ';'
+.
+
+Object<STI parent>                    (. STI node = _tree.add(parent, la, stype_object); .)
+=
+  ComplexIdent<node>
+  ObjectDeclaration<node>
+.
+
+ObjectDeclaration<STI parent>
+=
+  ODBlockSimple<parent>
+| ODBlockComplex<parent>
+| ODBlockFile<parent>
+.
+
+ODBlockSimple<STI parent>
+=
+  Expression<parent>
+.
+
+ODBlockComplex<STI parent>
+=
+  '{'
+  Statements<parent>
+  '}'
+.
+
+ODBlockFile<STI parent>              (. STI node = _tree.add(parent, la, stype_file); .)
+=
+  '@'
+  (
+    Number<node>
+  | ComplexIdent<node>
+  )
+.
+
+Expression<STI parent>               (. STI node = parent; .) //_tree.add(_tree.main(), la, stype_expression); .)
+=
+  IF(IsAssignExpression()) AssignExpression<node>
+| SimpleExpression<node>
+.
+
+AssignExpression<STI parent>         (. STI node = _tree.add(parent, la, stype_expression_assign); .)
+=
+  ComplexIdent<node>
+  (
+    (
+      ":="
+      SimpleExpression<node>
+    )
+  |                                  // a+=1; -> a:=a+1 -> 
+                                     // ident0
+                                     //   simple_expression
+                                     //     ident0
+                                     //     op
+                                     //     simple_expression
+                                     // name same as expression_assign[0]
+                                     (. stree::iterator i = _tree.begin(node); .)
+                                     (. STI node1 = _tree.add(node, la, stype_expression_simple); .)
+                                     (. _tree.insert_subtree(_tree.begin(node1), i); .)
+    (
+      AOp<node1>                     // operator
+      SimpleExpression<node1>
+    )
+//                                     (. dumpTree(_tree); .)
+  )
+.
+
+SimpleExpression<STI parent>         (. STI node = _tree.add(parent, la, stype_expression_simple); .)
+=                                
+  Term<node>
+  [
+    Op<node> SimpleExpression<node>
+  ]
+.
+
+Term<STI parent>                     (. STI node = parent; .) //_tree.add(parent, la, stype_term); .)
+= 
+  IF(IsFunction()) Function<node>
+| ComplexIdent<node>
+| Number<node>
+| '('
+  SimpleExpression<node>
+  ')'
+.
+
+ComplexIdent<STI parent>             (. STI node = _tree.add(parent, la, stype_name); .)
+=
+  Ident<node>
+  {
+    '.'
+    Ident<node>
+  }
+.
+
+Ident<STI node>                      (. _tree.add(node, la, stype_ident); .)
+=
+  ident
+.
+
+Number<STI node>                     (. _tree.add(node, la, stype_number); .)
+=
+  number
+.
+
+Function<STI parent>                 (. STI node = _tree.add(parent, la, stype_function); .)
+=
+  ComplexIdent<node>
+  Arguments<node>
+.
+
+Arguments<STI parent>
+=
+  '('
+  [
+    SimpleExpression<parent>
+    {
+      ','
+      SimpleExpression<parent>
+    }
+  ]
+  ')'
+.
+
+AOp<STI parent>                 (. STI node = _tree.add(parent, la, stype_operator);
+                                   //printf("OP %S\n", la->val); 
+                                   .)
+=
+  (
+    "+="
+  | "-="
+  | "*="
+  | "/="
+  | "%="
+  )
+.
+
+Op<STI parent>                  (. STI node = _tree.add(parent, la, stype_operator);
+                                   //printf("OP %S\n", la->val); 
+                                   .)
+= 
+  (
+    '+'
+  | '-'
+  | '*'
+  | '/'
+  | '%'
+  )
+.
+
+END ACPU.
