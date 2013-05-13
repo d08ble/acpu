@@ -1,8 +1,8 @@
-# ACPU - Animation CPU - a{};
+# ACPU - Animation CPU
 
 Crossplatform platform. iOS, Andoid, Java, Flash, OSX, Linux, Windows
 
-# ACPUL - Another CPU Language
+# ACPUL - Another CPU Language - a{};
 
 Prototyping math language
 
