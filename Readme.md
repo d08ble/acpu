@@ -1,3 +1,9 @@
+ACPU - Animation CPU - a{};
+Crossplatform platform
+
+ACPUL - Another CPU Language
+Prototyping math language
+
 -  acpul-EBNF-cocor/ - Coco/R grammar for ACPUL
 -  samples/ - Sample applications
 -  compiler/ - ACPUL Compiler
