@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>iPixel SDK</title>
+<meta name="author" content="vv"/>
+<meta name="description" content="iPixel SDK web page"/>
+<link href="assets/css/bootstrap.css" rel="stylesheet"/>
+<link href="assets/css/bootstrap-responsive.css" rel="stylesheet"/>
+<link href="assets/css/bootstrap-init.css" rel="stylesheet"/>
+</head>
+<body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="./index.html">
+            <div class="acpul">
+              <div class="acpul-syntax-name">a</div>
+              <div class="acpul-syntax-code">{}</div>
+              <div class="acpul-syntax-end">;</div>
+            </div>
+          </a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active">
+                <a href="./index.html#acpul">ACPUL</a>
+              </li>
+              <li class="">
+                <a href="./index.html#acpu">ACPU</a>
+              </li>
+              <li class="">
+                <a href="./code.html">Code</a>
+              </li>
+              <li class="">
+                <a href="./index.html#doc">Documentation</a>
+              </li>
+              <li class="">
+                <a href="./index.html#social">Community</a>
+              </li>
+              <li class="">
+                <a href="./index.html#contact">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-unit">
+      <div class="container">
+        <a name="acpul"></br></a>
+        <h2><div class="acpul">
+          <div class="acpul">ACPUL - Another CPU Language - a{};</div>
+        </div></h2></br></br>
+
+        <h3>About</h3>
+        Удобный и простой язык программирования. </br>
+        Прост в изучении, минимален и гибок. </br>
+        Разработан специально для <a href="./acpu.html">ACPU</a> и разработке на планшетах с ограниченными возможностями. <a href="./google-glass.html">Совместим с Google Glass.</a> </br>
+        Главная цель получать более качественные кросс-платформенные приложения при уменьшении времени разработки, улучшении архитектуры (сохраняя принцип 80/20) и мобильности в сочетании простоты, доступности и максимальной производительности. </br>
+
+        <a name="acpu"></br></a>
+        <h3>ACPU - Animation CPU</h3>
+        Анимационный процессор, аналог классического хардварного процессора. Аналогично аппаратным портам ввода-вывода, которые обеспечивают связь с различными устройствами, в ACPU существуют виртуальные порты, которые обеспечивают связь с любым объектом в виртуальной среде (touch-display, cloud, media, etc.). Это позволяет связывать разные технологии универсальным методом. </br></br>
+        
+        <h3>ACPUEM - ACPU Execution Module</h3>
+        Модуль исполнения, Virtual Machine. Полностью виртуализирован и может работать в любой среде: iOS, OSX, Android, Linux, Windows, Adobe Flash, Java, HTML5, Unity3d. </br>Внутренняя структура настолько универсальна, что может быть реализована даже в аппаратном чипе на основе SoC с кластерной микроархитектурой для достижения максимальной производительности.
+        
+
+
+        </br><a name="code"></br></a>
+        <h3><a href="./code.html">Code</a></h3>
+        
+        Структура кода.
+
+        </br><a name="doc"></br></a>
+        <h3>Documentation</h3>
+
+        </br><a name="community"></br></a>
+        <h3>Community</h3>
+        Сообщество FB, Twitter, VK
+        <h4>Votes</h4>
+        Голосуем за улучшение языка
+        <h5>1. Дерево файлов</h5>
+        <ul>
+          <h6>Отдельно для каждого файла через строку в самом файле. Позволяет автоматически групировать и вычислять путь при рефакторинге:</h6>
+          <li>Как в unix-shell через коммент #!/bin/sh</li>
+          <li>Через объект FILE root.dir.name</li>
+          <li>Через строку FILE "root/dir/name"</li>
+          <h6>Для всех файлов через группы, группы задаются руками:</h6>
+          <li>Через функцию конфигурации group { text "File for path root/dir.name"; check {_0 > 10 and _0 < 100;}; };</li>
+        </ul>
+
+        </br><a name="contact"></br></a>
+        <h3>Contact</h3>
+
+<!--        <h2>iPixel SDK</h2></br>
+        <h3>Features:</h3></br>
+        <li>Подключите в ваш cocos2d 2.0 проект классные анимации.</li>
+        <li>Создайте Fragment and Pixel shaders, управляйте логикой вашей игры, настраивайте физические парметры, создавайте анимационный контнент вашего приложения прямо из iPad без компиляции в XCode. (длинная фраза, как-то перефразировать)</li>
+        <li>Анимационный процессор с простой математической системой команд.</li>
+        <li>Удивите пользователей.</li></br>
+
+        (как-то переразбить в 3 предложения)
+
+        <h4>Кому нужен? (нужен ли этот вопрос?)</h4>
+        Программистам, аниматорам, дизайнерам, математикам и другим классным ребятам.
+
+        <h4>About</h4>
+        
+
+        <h4>Пример (видео)</h4>
+
+        <h4></h4>
+        Почему r0-r7, а не названия?
+        Короче пишется (в 2 клика) и короче выглядит, что позволяет вместить больше текста на экране планшета. 
+
+        Как сделать memory heap?
+        Есть, в экспериментальной сфере.
+
+        Почему нет динамических объектов?
+        Создание динамических объектов требует продвинутого менежмента памяти, которого нет на данный момент. -->
+      </div>
+    </div>
+</body>
+</html>

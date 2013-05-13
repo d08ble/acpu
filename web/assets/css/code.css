@@ -1,0 +1,69 @@
+.acpul-stype-undefined {
+  color: #777777;
+    float: left;
+  display: block;
+}
+
+.acpul-stype-main {
+  color: #00bbff;
+    float: left;
+  display: block;
+}
+
+.acpul-stype-object {
+  color: #00bb00;
+    float: left;
+  display: block;
+}
+
+.acpul-stype-expression_simple {
+  color: #ffbb00;
+    float: left;
+  display: block;
+}
+
+.acpul-stype-expression_assign {
+  color: #ff7777;
+    float: left;
+  display: block;
+}
+
+.acpul-stype-name {
+  color: #7777ff;
+    float: left;
+  display: block;
+}
+
+.acpul-stype-ident {
+  color: #00ffff;
+    float: left;
+  display: block;
+}
+
+.acpul-stype-number {
+  color: #ff00ff;
+    float: left;
+  display: block;
+}
+
+.acpul-stype-function {
+  color: #ff0000;
+    float: left;
+  display: block;
+}
+
+.acpul-stype-operator {
+  color: #ffffff;
+    float: left;
+  display: block;
+}
+
+.acpul-stype-val {
+  color: #ff33ff;
+}
+
+.acpul-fileMap-files {
+  font-size: 14px;
+  color: #ffffff;
+  background-color: #112233;
+}

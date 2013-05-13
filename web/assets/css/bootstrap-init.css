@@ -1,0 +1,55 @@
+body {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.navbar-inner {
+}
+
+.navbar-inverse .navbar-inner {
+  background-color: #ffffff;
+  background-image: -moz-linear-gradient(top, #ffffff, #eeeeee);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#eeeeee));
+  background-image: -webkit-linear-gradient(top, #ffffff, #eeeeee);
+  background-image: -o-linear-gradient(top, #ffffff, #eeeeee);
+  background-image: linear-gradient(to bottom, #ffffff, #eeeeee);
+/*  background-repeat: repeat-x;
+  border-color: #252525;*/
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffeeeeee', GradientType=0);
+}
+
+.navbar-inverse .brand,
+.navbar-inverse .nav > li > a {
+  color: #111111;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.navbar-inverse .brand:hover,
+.navbar-inverse .nav > li > a:hover {
+  color: #ff7711;
+}
+
+.acpul
+{
+  color: #000000;
+  float: left;
+}
+
+.acpul-syntax-name
+{
+  color: #773388;
+  float: left;
+}
+
+.acpul-syntax-code
+{
+  color: #880000;
+  float: left;
+}
+
+.acpul-syntax-end
+{
+  color: #008800;
+  float: left;
+}
