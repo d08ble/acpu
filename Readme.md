@@ -1,7 +1,9 @@
-ACPU - Animation CPU - a{};
-Crossplatform platform
+# ACPU - Animation CPU - a{};
 
-ACPUL - Another CPU Language
+Crossplatform platform. iOS, Andoid, Java, Flash, OSX, Linux, Windows
+
+# ACPUL - Another CPU Language
+
 Prototyping math language
 
 -  acpul-EBNF-cocor/ - Coco/R grammar for ACPUL
