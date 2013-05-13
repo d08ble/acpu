@@ -10,11 +10,11 @@ Prototyping math language
 -  samples/ - Sample applications
 -  compiler/ - ACPUL Compiler
 -  platforms/
--    ios/
--    osx/
--    android/
--    linux/
--    windows/
+--    ios/
+--    osx/
+--    android/
+--    linux/
+--    windows/
 
 
 # ACPU License
