@@ -1,12 +1,12 @@
-  acpul-EBNF-cocor/ - Coco/R grammar for ACPUL
-  samples/ - Sample applications
-  compiler/ - ACPUL Compiler
-  platforms/
-    ios/
-    osx/
-    android/
-    linux/
-    windows/
+-  acpul-EBNF-cocor/ - Coco/R grammar for ACPUL
+-  samples/ - Sample applications
+-  compiler/ - ACPUL Compiler
+-  platforms/
+-    ios/
+-    osx/
+-    android/
+-    linux/
+-    windows/
 
 
 BSD License
