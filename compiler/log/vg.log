@@ -1,0 +1,205 @@
+==32987== Memcheck, a memory error detector
+==32987== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==32987== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==32987== Command: ./test-acpul
+==32987== 
+==32987== 
+==32987== HEAP SUMMARY:
+==32987==     in use at exit: 8,227 bytes in 31 blocks
+==32987==   total heap usage: 25,043 allocs, 25,012 frees, 2,376,601 bytes allocated
+==32987== 
+==32987== 8 bytes in 1 blocks are still reachable in loss record 1 of 11
+==32987==    at 0x5666: malloc (vg_replace_malloc.c:274)
+==32987==    by 0x7FFF5FC11C2A: malloc (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC19C4E: operator new(unsigned long) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0817E: std::vector<char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), std::allocator<char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*)> >::_M_insert_aux(__gnu_cxx::__normal_iterator<char const* (**)(dyld_image_states, unsigned int, dyld_image_info const*), std::vector<char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), std::allocator<char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*)> > >, char const* (* const&)(dyld_image_states, unsigned int, dyld_image_info const*)) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC08260: std::vector<char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), std::allocator<char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*)> >::insert(__gnu_cxx::__normal_iterator<char const* (**)(dyld_image_states, unsigned int, dyld_image_info const*), std::vector<char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), std::allocator<char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*)> > >, char const* (* const&)(dyld_image_states, unsigned int, dyld_image_info const*)) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC054FA: dyld::registerImageStateBatchChangeHandler(dyld_image_states, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*)) (in /usr/lib/dyld)
+==32987==    by 0x1C6ACB: dyld_register_image_state_change_handler (in /usr/lib/system/libdyld.dylib)
+==32987==    by 0x1C7ACB: _dyld_initializer (in /usr/lib/system/libdyld.dylib)
+==32987==    by 0xDEE73: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==32987==    by 0x7FFF5FC0FDA5: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0FAF1: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0D2E3: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0D27C: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0E0B6: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC034B7: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0760A: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC01058: _dyld_start (in /usr/lib/dyld)
+==32987==    by 0xFFFFFFFF: ???
+==32987== 
+==32987== 82 bytes in 6 blocks are still reachable in loss record 2 of 11
+==32987==    at 0x5666: malloc (vg_replace_malloc.c:274)
+==32987==    by 0x247358: strdup (in /usr/lib/system/libsystem_c.dylib)
+==32987==    by 0x3EC802: _xpc_strdup (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0x3F2CCF: _xpc_dictionary_insert (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0x3F2E0E: xpc_dictionary_set_string (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0x3F4E8C: _libxpc_initializer (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0xDEE7D: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==32987==    by 0x7FFF5FC0FDA5: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0FAF1: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0D2E3: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0D27C: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0E0B6: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC034B7: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0760A: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC01058: _dyld_start (in /usr/lib/dyld)
+==32987==    by 0xFFFFFFFF: ???
+==32987== 
+==32987== 88 bytes in 1 blocks are still reachable in loss record 3 of 11
+==32987==    at 0x5666: malloc (vg_replace_malloc.c:274)
+==32987==    by 0x1CF9B0: get_or_create_key_element (in /usr/lib/system/libkeymgr.dylib)
+==32987==    by 0x1CFBC9: _keymgr_get_and_lock_processwide_ptr_2 (in /usr/lib/system/libkeymgr.dylib)
+==32987==    by 0x1CFC36: __keymgr_initializer (in /usr/lib/system/libkeymgr.dylib)
+==32987==    by 0xDEE6E: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==32987==    by 0x7FFF5FC0FDA5: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0FAF1: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0D2E3: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0D27C: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0E0B6: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC034B7: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0760A: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC01058: _dyld_start (in /usr/lib/dyld)
+==32987==    by 0xFFFFFFFF: ???
+==32987== 
+==32987== 136 bytes in 1 blocks are still reachable in loss record 4 of 11
+==32987==    at 0x6070: calloc (vg_replace_malloc.c:597)
+==32987==    by 0x3EC8FA: _xpc_calloc (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0x3ED1D4: _xpc_base_create (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0x3F6C32: _xpc_domain_create (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0x3F4F1E: _libxpc_initializer (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0xDEE7D: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==32987==    by 0x7FFF5FC0FDA5: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0FAF1: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0D2E3: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0D27C: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0E0B6: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC034B7: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0760A: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC01058: _dyld_start (in /usr/lib/dyld)
+==32987==    by 0xFFFFFFFF: ???
+==32987== 
+==32987== 192 bytes in 6 blocks are still reachable in loss record 5 of 11
+==32987==    at 0x5666: malloc (vg_replace_malloc.c:274)
+==32987==    by 0x3EC93D: _xpc_malloc (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0x3F2CB4: _xpc_dictionary_insert (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0x3F2E0E: xpc_dictionary_set_string (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0x3F4E8C: _libxpc_initializer (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0xDEE7D: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==32987==    by 0x7FFF5FC0FDA5: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0FAF1: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0D2E3: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0D27C: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0E0B6: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC034B7: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0760A: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC01058: _dyld_start (in /usr/lib/dyld)
+==32987==    by 0xFFFFFFFF: ???
+==32987== 
+==32987== 409 bytes in 6 blocks are still reachable in loss record 6 of 11
+==32987==    at 0x5666: malloc (vg_replace_malloc.c:274)
+==32987==    by 0x247358: strdup (in /usr/lib/system/libsystem_c.dylib)
+==32987==    by 0x3EC802: _xpc_strdup (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0x3F3BF5: xpc_string_create (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0x3F2DFD: xpc_dictionary_set_string (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0x3F4E8C: _libxpc_initializer (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0xDEE7D: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==32987==    by 0x7FFF5FC0FDA5: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0FAF1: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0D2E3: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0D27C: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0E0B6: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC034B7: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0760A: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC01058: _dyld_start (in /usr/lib/dyld)
+==32987==    by 0xFFFFFFFF: ???
+==32987== 
+==32987== 528 bytes in 6 blocks are still reachable in loss record 7 of 11
+==32987==    at 0x6070: calloc (vg_replace_malloc.c:597)
+==32987==    by 0x3EC8FA: _xpc_calloc (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0x3ED1D4: _xpc_base_create (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0x3F3BEA: xpc_string_create (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0x3F2DFD: xpc_dictionary_set_string (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0x3F4E8C: _libxpc_initializer (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0xDEE7D: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==32987==    by 0x7FFF5FC0FDA5: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0FAF1: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0D2E3: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0D27C: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0E0B6: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC034B7: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0760A: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC01058: _dyld_start (in /usr/lib/dyld)
+==32987==    by 0xFFFFFFFF: ???
+==32987== 
+==32987== 608 bytes in 1 blocks are still reachable in loss record 8 of 11
+==32987==    at 0x6070: calloc (vg_replace_malloc.c:597)
+==32987==    by 0x3EC8FA: _xpc_calloc (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0x3ED1D4: _xpc_base_create (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0x3F2FDA: xpc_dictionary_create (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0x3F4E63: _libxpc_initializer (in /usr/lib/system/libxpc.dylib)
+==32987==    by 0xDEE7D: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==32987==    by 0x7FFF5FC0FDA5: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0FAF1: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0D2E3: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0D27C: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0E0B6: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC034B7: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0760A: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC01058: _dyld_start (in /usr/lib/dyld)
+==32987==    by 0xFFFFFFFF: ???
+==32987== 
+==32987== 1,040 bytes in 1 blocks are still reachable in loss record 9 of 11
+==32987==    at 0x5666: malloc (vg_replace_malloc.c:274)
+==32987==    by 0x24A88F: atexit_register (in /usr/lib/system/libsystem_c.dylib)
+==32987==    by 0x24A98B: __cxa_atexit (in /usr/lib/system/libsystem_c.dylib)
+==32987==    by 0x1001152CD: __static_initialization_and_destruction_0(int, int) (Core.cpp:77)
+==32987==    by 0x100114ED6: global constructors keyed to acpulSharedCore (Core.cpp:175)
+==32987==    by 0x7FFF5FC0FDA5: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0FAF1: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0D2E3: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0E0B6: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC034DC: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC0760A: dyld::_main(macho_header const*, unsigned long, int, char const**, char const**, char const**) (in /usr/lib/dyld)
+==32987==    by 0x7FFF5FC01058: _dyld_start (in /usr/lib/dyld)
+==32987==    by 0xFFFFFFFF: ???
+==32987== 
+==32987== 1,040 bytes in 1 blocks are still reachable in loss record 10 of 11
+==32987==    at 0x5666: malloc (vg_replace_malloc.c:274)
+==32987==    by 0x24A88F: atexit_register (in /usr/lib/system/libsystem_c.dylib)
+==32987==    by 0x24A98B: __cxa_atexit (in /usr/lib/system/libsystem_c.dylib)
+==32987==    by 0x1000E4545: exprtk::details::lexer<float>::scan_symbol() (exprtk.hpp:996)
+==32987==    by 0x1000E987D: exprtk::details::lexer<float>::scan_token() (exprtk.hpp:931)
+==32987==    by 0x1000E9ED3: exprtk::details::lexer<float>::process(std::string const&) (exprtk.hpp:869)
+==32987==    by 0x100113078: exprtk::parser<float>::compile(std::string const&, exprtk::expression<float>&, exprtk::parser<float>::optimization_level const&) (exprtk.hpp:5513)
+==32987==    by 0x1000748A1: acpul::ExecutionBlock::loadExpressionNode(acpul::CodeBlock*, stree&, tree<snode*, std::allocator<tree_node_<snode*> > >::pre_order_iterator) (ExecutionBlock.cpp:63)
+==32987==    by 0x100074B43: acpul::ExecutionBlock::load(acpul::CodeBlock*) (ExecutionBlock.cpp:41)
+==32987==    by 0x10005858E: acpul::Executor::linkCodeBlock(acpul::CodeBlock*) (Executor.cpp:57)
+==32987==    by 0x1000585ED: acpul::Executor::link(acpul::Compiler&) (Executor.cpp:41)
+==32987==    by 0x10002CCAE: acpul::Compiler::compile(acpul::ObjectsMap&, acpul::Executor*) (Compiler.cpp:32)
+==32987==    by 0x10014BB10: acpul::BuildFile::compile(acpul::Executor*) (BuildFile.cpp:117)
+==32987==    by 0x10011400C: acpul::Core::getblockIdForFormulaId(int) (Core.cpp:135)
+==32987==    by 0x100114085: acpul::Core::allocateInterpreter(int) (Core.cpp:145)
+==32987==    by 0x10013F9FD: acpul::CoreTest::testQT() (CoreTest.cpp:68)
+==32987==    by 0x100001E9B: main (main.cpp:107)
+==32987== 
+==32987== 4,096 bytes in 1 blocks are still reachable in loss record 11 of 11
+==32987==    at 0x5666: malloc (vg_replace_malloc.c:274)
+==32987==    by 0x2543F7: __smakebuf (in /usr/lib/system/libsystem_c.dylib)
+==32987==    by 0x24AD19: __swsetup (in /usr/lib/system/libsystem_c.dylib)
+==32987==    by 0x24B6C3: __vfprintf (in /usr/lib/system/libsystem_c.dylib)
+==32987==    by 0x24B18D: vfprintf_l (in /usr/lib/system/libsystem_c.dylib)
+==32987==    by 0x2542CF: printf (in /usr/lib/system/libsystem_c.dylib)
+==32987==    by 0x10013F83D: acpul::CoreTest::loadFile(int, char const*) (CoreTest.cpp:112)
+==32987==    by 0x10013F9A1: acpul::CoreTest::testQT() (CoreTest.cpp:63)
+==32987==    by 0x100001E9B: main (main.cpp:107)
+==32987== 
+==32987== LEAK SUMMARY:
+==32987==    definitely lost: 0 bytes in 0 blocks
+==32987==    indirectly lost: 0 bytes in 0 blocks
+==32987==      possibly lost: 0 bytes in 0 blocks
+==32987==    still reachable: 8,227 bytes in 31 blocks
+==32987==         suppressed: 0 bytes in 0 blocks
+==32987== 
+==32987== For counts of detected and suppressed errors, rerun with: -v
+==32987== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
