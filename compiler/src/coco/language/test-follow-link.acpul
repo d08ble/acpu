@@ -1,0 +1,78 @@
+# test FOLLOW LINK REPLACE EXTEND '_'
+
+#define simple objects
+a 0;
+b r0:=1;
+c sin(a);
+d c+a;
+e {b;1;};
+f
+{
+  g 1;
+  r0;
+};
+
+# follow test (NO EXTEND, REPLACE)
+r0:=a;
+a _;
+a _();
+a _(1)+1;
+r1:=a;
+
+# should be
+#r0:=0+1;
+#r1:=0+1;
+
+f1 f;
+f2
+{
+  _ f;
+};
+f3
+{
+  _ f1;
+};
+f4
+{
+  _ f2;
+};
+
+# complex test
+f5
+{
+  _ f4;
+  g f3;
+  g.r r0+1;
+  _ g;
+  r0;
+};
+
+# !!!
+# prev is pass ok, down not tested. 
+# link/follow _ need check/update/parent in expression/block/object query fix
+
+f5 _+2;
+f5.a.b.c.d {r0+1;};
+f5.a _+1;
+f5 _+1;
+
+f5;
+f5.r;
+f5.g;
+
+f6 f5;
+f7 {_ f6;};
+f7 _+2;
+f7;
+f7.g;
+
+f8 f7;
+f8 {if (0, _, 1);};
+
+f8;
+
+#
+#f2.g();
+#
+#f1.g {f.g();};
+#f1.g _;

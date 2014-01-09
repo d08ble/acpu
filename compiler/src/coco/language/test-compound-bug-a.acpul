@@ -1,0 +1,36 @@
+b0 u31;
+b1 u30;
+head 100;
+m u29;
+
+stack.base.push
+{
+ watch(_0);
+};
+
+a
+{
+  find
+  {
+   b0:=0;
+   b1:=-1;
+   while(b0<head)
+   {
+    if(get(u0, m, b0)==_0)
+    {
+     b1:=b0;
+     b0:=head;
+    };
+    b0+=1;
+#    watch(b0);
+   };
+   0;
+  };
+#  is.once b0:=find(_0)==0;
+  if(find(_0)==0)
+  {
+   stack.base.push(_0);
+  };
+};
+
+a(r0);

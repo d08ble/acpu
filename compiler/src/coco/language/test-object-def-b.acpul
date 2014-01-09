@@ -1,0 +1,20 @@
+heap.a.a 60000;
+heap.a.b 1;
+
+heap
+{
+  alloc
+  {
+   0;
+#    mem(u0, 0, a.a, _0);
+  };
+  _;
+};
+
+watch(heap.a.a);
+
+c heap.a;
+c.a;
+
+c heap;
+watch(c.a.a);

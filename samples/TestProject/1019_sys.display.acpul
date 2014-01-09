@@ -1,0 +1,27 @@
+### 1019 sys.display
+display
+{
+ gl
+ {
+  render.modes
+  {
+   point 0;
+   strip 1;
+   line 2;
+   line1 3;
+   poly 4;
+   poly1 5;
+   fill 6;
+  };
+  param # glVertexAttribArray
+  # bufferId, size, stride, mem, offset
+  {
+   io(u0, 8000+_0, _1, _2, _3, _4);
+  };
+  draw
+  # mode, first, count
+  {
+   io(u0, 8010, _0, _1, _2, 0);
+  };
+ };
+};

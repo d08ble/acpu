@@ -1,0 +1,16 @@
+# 1st bugfix in ACPUL (not compiler)
+
+a
+{
+ fn _0(_1);
+ if (r0)
+ {
+  fn(_0, r0);
+ };
+};
+
+r0:=1;
+
+fn1 {watch(_0);};
+
+a(fn1);

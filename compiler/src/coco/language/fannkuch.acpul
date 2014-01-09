@@ -1,0 +1,183 @@
+fannkuch
+{
+  n _0;
+  
+  qps.alloc
+  {
+    arr alloc(n);
+    p:=arr;
+    q:=arr;
+    s:=arr;
+  };
+
+  qps.alloc();
+
+  sign r14;
+  sign:=0;
+  maxflips 0;
+  sum r6;
+  sum:=0;
+
+  qps.init
+  {
+    i r0;
+    i:=1;
+    while (i < n)
+    {
+      set(p, i, i);
+      set(q, i, i);
+      set(s, i, i);
+      i+=1;
+    };
+  #  r0:=1;while(r0<n){a set(_0, i, i);a(p);a(q);a(s);};
+  }
+
+  qps.init();
+
+  l1 r1;
+  l1:=1;
+  while (l1)
+  {
+    copy.and.flip
+    {
+      q1 r2;
+      q1:=get(p, 1);
+      if (q1 != 1)
+      {
+        copy.p.to.q
+        {
+          i:=2;
+          while(i < n)
+          {
+            set(q, i, get(p, i));
+          };
+        };
+
+        copy.p.to.q();
+
+        flips r3;
+        flips:=1;
+
+        l2 r4;
+        l2:=1;
+        while(l2)
+        {
+          qq r5;
+          qq:=get(q, q1);
+          if (qq == 1)
+          {
+            sum+=sign*flips;
+            flips:=if(flips<maxflips, flips, maxflips);
+            l2:=0; #break
+          };
+          if (qq != 1) #else
+          {
+            set(q, q1, q1);
+            if (q1 >= 4)
+            {
+              i r7;
+              j q1-1;
+
+              l3 r8;
+              l3:=1;
+              while(l3)
+              {
+                tmp r9;
+                tmp:=get(q, i);
+                set(q, i, get(q, j));
+                set(q, j, tmp);
+                i+=1;
+                j-=1;
+                if (i == j)
+                {
+                  l3:=0; #break
+                };
+              };
+            };
+            q1:=qq;
+            flips+=1;
+          };
+        };
+      };
+    };
+
+    copy.and.flip();
+
+    permute
+    {
+      if (sign == 1)
+      {
+        rotate.a.b
+        {
+          tmp r9;
+          tmp:=get(p, 2);
+          set(p, 2, get(p, 1));
+          set(p, 1, tmp);
+          sign:=-1;
+        };
+
+        rotate.a.b();
+      };
+      if (sign != 1)
+      {
+        rotate.a.b.c
+        {
+          tmp r9;
+          tmp:=get(p, 2);
+          set(p, 2, get(p, 3));
+          set(p, 3, tmp);
+
+          i:=3;
+          l4 r10;
+          l4:=1;
+          while(l4)
+          {
+            sx r11;
+            sx:=get(s, i);
+            if (sx != 1)
+            {
+              set(s, i, sx-1);
+              l4:=0; #break
+            };
+            if (sx == 1) #else
+            {
+              if (i == n)
+              {
+                #return
+                l4:=0; #break
+                l1:=0; #break
+              };
+              if (i != n) #else
+              {
+                set(s, i, i);
+                rotate.a.n
+                {
+                  t r12;
+                  t:=get(p, 1);
+
+                  j r13;
+                  j:=1;
+                  while(j<=i)
+                  {
+                    set(p, j, get(p, j+1));
+                    j+=1;
+                  };
+                  set(p, i+1, t);
+                };
+
+                rotate.a.n();
+              };
+            };
+            i+1;
+          }
+        };
+
+        rotate.a.b.c();
+      };
+    };
+
+    permute();
+  };
+};
+
+fannkuch(10);

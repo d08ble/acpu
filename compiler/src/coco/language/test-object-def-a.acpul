@@ -1,0 +1,4 @@
+a 0-1; #object a 0-1
+watch(a);
+b -1; #expression b-1
+watch(b);

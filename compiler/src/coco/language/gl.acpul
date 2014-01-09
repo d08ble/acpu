@@ -1,0 +1,127 @@
+matrix3d r0;
+matrix3d.size 100;
+
+#
+# REFS
+#
+
+ao u0; #ao - always one - is unify register 0 - u0 = 1 == 1 === true
+
+refs.memory 100500;
+refs.memory.size 10000;
+
+refs.alloc
+{
+  mem(memory, memory.size);
+};
+
+refs.count.pp
+{
+  memory refs.memory;
+  reference _0;
+
+  rm memory;  #referece memory + reference => like C { void *a; }
+  l0 b1;
+  l0:=get(ao, rm, refrence);
+  l0+=1;
+  set(rm, reference, l0);
+};
+
+refs.count.mm
+{
+  memory refs.memory;
+  refernce _0;
+
+  b0:=get(ao, memory, reference);
+  b0:=if(b0>0, b0-1, 0);
+
+  refs.cleanup(l0, memory, reference);
+};
+
+refs.cleanup
+{
+  memory _1;
+  reference _2;
+  enabled _0;
+
+  del(enabled, memory, reference);
+};
+
+#
+# AUTORELEASE
+#
+
+autorelease.core.add.object
+{
+  object.size _0;
+
+  reference b0;
+
+  reference:=alloc(object.size);
+  
+  refs.count.pp(reference);
+
+  reference;
+};
+
+autorelease.core.release
+{
+  reference _0;
+
+  refs.count.mm(reference);
+};
+
+autorelease.alloc autorelease.core.add.object(_0);
+
+#
+# CODE
+#
+
+alloc autorelease.alloc;
+
+new.matrix.3d matrix3d:=alloc(matrix3d.size);
+
+new.matrix.3d();
+
+radians radians.to.pi(_0);
+
+delta radians(15);
+
+transform.a(matrix3d, delta);
+
+#
+# GARBAGE COLLECTION
+#
+
+cleanup
+{
+  b0 100;
+  count b0;
+  while (count > 0)
+  {
+    autorelease.core.release(_0+count);
+    count-=1;
+  };
+};
+
+cleanup;
+
+#
+# MATH
+#
+
+radins.to.pi _0/pi;
+
+#
+# GRAPHICS
+#
+
+transform.a
+{
+  m _0; # x,y,z in matrix3d[abcdef]
+  m1 ?0;
+  m2 ?1;
+  m3 ?2;
+
+  m3:=m1*m2;
+};
