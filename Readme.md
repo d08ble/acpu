@@ -1,5 +1,7 @@
 # ACPU - Animation CPU
 
+<coming soon.../>
+
 Crossplatform platform. iOS, Andoid, Java, Flash, OSX, Linux, Windows
 
 http://acpul.org/
